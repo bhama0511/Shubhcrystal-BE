@@ -8,3 +8,7 @@ target/
 .DS_Store
 .env
 application-local.properties
+.metadata/
+.settings/
+.classpath
+.project
