@@ -1,11 +1,15 @@
 package com.shubhcrystals;
 
 import com.shubhcrystals.model.Product;
+import com.shubhcrystals.model.Role;
+import com.shubhcrystals.model.User;
 import com.shubhcrystals.repository.ProductRepository;
+import com.shubhcrystals.repository.UserRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -18,10 +22,24 @@ public class ShubhcrystalsApplication {
     }
 
     @Bean
-    CommandLineRunner seedData(ProductRepository repo) {
+    CommandLineRunner seedData(ProductRepository productRepo,
+                               UserRepository userRepo,
+                               PasswordEncoder encoder) {
         return args -> {
-            if (repo.count() > 0) return;
-            repo.saveAll(List.of(
+            // Seed admin user
+            if (!userRepo.existsByEmail("admin@shubhcrystals.com")) {
+                User admin = new User();
+                admin.setName("Admin");
+                admin.setEmail("admin@shubhcrystals.com");
+                admin.setPassword(encoder.encode("Admin@123"));
+                admin.setRole(Role.ADMIN);
+                userRepo.save(admin);
+                System.out.println(">>> Admin seeded: admin@shubhcrystals.com / Admin@123");
+            }
+
+            // Seed products
+            if (productRepo.count() > 0) return;
+            productRepo.saveAll(List.of(
                 new Product(null, "Amethyst Calm Bracelet", "Amethyst",
                     "Amethyst promotes calmness, clarity, and spiritual protection. Perfect for reducing anxiety and enhancing intuition.",
                     new BigDecimal("799"), "Crown Chakra", "Bestseller", true,
