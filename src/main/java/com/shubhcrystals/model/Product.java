@@ -32,6 +32,10 @@ public class Product {
     private String chakra;
     private String badge;
     private String emoji;
+
+    @Column(name = "image_url")
+    private String imageUrl;
+
     private boolean available = true;
 
     @ElementCollection
@@ -79,6 +83,9 @@ public class Product {
 
     public String getEmoji() { return emoji; }
     public void setEmoji(String emoji) { this.emoji = emoji; }
+
+    public String getImageUrl() { return imageUrl; }
+    public void setImageUrl(String imageUrl) { this.imageUrl = imageUrl; }
 
     public boolean isAvailable() { return available; }
     public void setAvailable(boolean available) { this.available = available; }
