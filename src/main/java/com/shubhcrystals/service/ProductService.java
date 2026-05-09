@@ -41,7 +41,10 @@ public class ProductService {
         existing.setPrice(updated.getPrice());
         existing.setChakra(updated.getChakra());
         existing.setBadge(updated.getBadge());
+        existing.setEmoji(updated.getEmoji());
+        existing.setImageUrl(updated.getImageUrl());
         existing.setAvailable(updated.isAvailable());
+        existing.setBenefits(updated.getBenefits());
         return repo.save(existing);
     }
 
