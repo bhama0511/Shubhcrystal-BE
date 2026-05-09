@@ -45,11 +45,12 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.GET, "/api/products", "/api/products/**").permitAll()
                 // Public — auth
                 .requestMatchers("/api/auth/**").permitAll()
-                // Admin only — product management & image upload
+                // Admin only — product management, image upload, admin panel
                 .requestMatchers(HttpMethod.POST,   "/api/products").hasRole("ADMIN")
                 .requestMatchers(HttpMethod.PUT,    "/api/products/**").hasRole("ADMIN")
                 .requestMatchers(HttpMethod.DELETE, "/api/products/**").hasRole("ADMIN")
                 .requestMatchers(HttpMethod.POST,   "/api/upload").hasRole("ADMIN")
+                .requestMatchers("/api/admin/**").hasRole("ADMIN")
                 // Everything else requires login
                 .anyRequest().authenticated()
             )
