@@ -6,6 +6,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 @Table(name = "products")
@@ -29,15 +30,20 @@ public class Product {
     private BigDecimal price;
 
     private String chakra;
-
     private String badge;
-
+    private String emoji;
     private boolean available = true;
+
+    @ElementCollection
+    @CollectionTable(name = "product_benefits", joinColumns = @JoinColumn(name = "product_id"))
+    @Column(name = "benefit")
+    private List<String> benefits;
 
     public Product() {}
 
     public Product(Long id, String name, String stone, String description,
-                   BigDecimal price, String chakra, String badge, boolean available) {
+                   BigDecimal price, String chakra, String badge, boolean available,
+                   String emoji, List<String> benefits) {
         this.id = id;
         this.name = name;
         this.stone = stone;
@@ -46,6 +52,8 @@ public class Product {
         this.chakra = chakra;
         this.badge = badge;
         this.available = available;
+        this.emoji = emoji;
+        this.benefits = benefits;
     }
 
     public Long getId() { return id; }
@@ -69,6 +77,12 @@ public class Product {
     public String getBadge() { return badge; }
     public void setBadge(String badge) { this.badge = badge; }
 
+    public String getEmoji() { return emoji; }
+    public void setEmoji(String emoji) { this.emoji = emoji; }
+
     public boolean isAvailable() { return available; }
     public void setAvailable(boolean available) { this.available = available; }
+
+    public List<String> getBenefits() { return benefits; }
+    public void setBenefits(List<String> benefits) { this.benefits = benefits; }
 }

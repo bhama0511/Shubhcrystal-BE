@@ -23,17 +23,34 @@ public class ShubhcrystalsApplication {
             if (repo.count() > 0) return;
             repo.saveAll(List.of(
                 new Product(null, "Amethyst Calm Bracelet", "Amethyst",
-                    "Amethyst promotes calmness, clarity, and spiritual protection.", new BigDecimal("799"), "Crown Chakra", "Bestseller", true),
+                    "Amethyst promotes calmness, clarity, and spiritual protection. Perfect for reducing anxiety and enhancing intuition.",
+                    new BigDecimal("799"), "Crown Chakra", "Bestseller", true,
+                    "💜", List.of("Reduces stress & anxiety", "Enhances intuition", "Promotes restful sleep")),
+
                 new Product(null, "Rose Quartz Love Bracelet", "Rose Quartz",
-                    "Rose Quartz opens the heart chakra and attracts love and compassion.", new BigDecimal("699"), "Heart Chakra", "New", true),
+                    "Rose Quartz is the stone of unconditional love. It opens the heart chakra and attracts love and compassion.",
+                    new BigDecimal("699"), "Heart Chakra", "New", true,
+                    "🌸", List.of("Attracts love & relationships", "Heals emotional wounds", "Boosts self-love")),
+
                 new Product(null, "Clear Quartz Energy Bracelet", "Clear Quartz",
-                    "Clear Quartz amplifies energy, enhances clarity, and balances all chakras.", new BigDecimal("599"), "All Chakras", null, true),
+                    "Clear Quartz is the master healer. It amplifies energy, enhances clarity, and balances all chakras.",
+                    new BigDecimal("599"), "All Chakras", null, true,
+                    "🔮", List.of("Amplifies intentions", "Enhances clarity", "Balances all chakras")),
+
                 new Product(null, "Black Tourmaline Protection Bracelet", "Black Tourmaline",
-                    "Black Tourmaline repels negative energies and shields against psychic attacks.", new BigDecimal("899"), "Root Chakra", "Protection", true),
+                    "Black Tourmaline is a powerful protective stone that repels negative energies and shields against psychic attacks.",
+                    new BigDecimal("899"), "Root Chakra", "Protection", true,
+                    "🖤", List.of("Protection from negativity", "Grounding energy", "Stress relief")),
+
                 new Product(null, "Citrine Abundance Bracelet", "Citrine",
-                    "Citrine attracts success, prosperity, and positive energy.", new BigDecimal("749"), "Solar Plexus Chakra", null, true),
+                    "Citrine is the stone of abundance and manifestation. It attracts success, prosperity, and positive energy.",
+                    new BigDecimal("749"), "Solar Plexus Chakra", null, true,
+                    "💛", List.of("Attracts wealth & success", "Boosts confidence", "Promotes positivity")),
+
                 new Product(null, "Lapis Lazuli Wisdom Bracelet", "Lapis Lazuli",
-                    "Lapis Lazuli stimulates enlightenment and enhances dream work.", new BigDecimal("999"), "Third Eye Chakra", "Premium", true)
+                    "Lapis Lazuli has been prized since antiquity for wisdom and truth. It stimulates enlightenment and enhances dream work.",
+                    new BigDecimal("999"), "Third Eye Chakra", "Premium", true,
+                    "💙", List.of("Enhances wisdom", "Promotes truth & clarity", "Stimulates creativity"))
             ));
         };
     }
