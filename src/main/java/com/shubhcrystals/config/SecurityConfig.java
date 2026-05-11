@@ -51,6 +51,8 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.DELETE, "/api/products/**").hasRole("ADMIN")
                 .requestMatchers(HttpMethod.POST,   "/api/upload").hasRole("ADMIN")
                 .requestMatchers("/api/admin/**").hasRole("ADMIN")
+                // Orders — any authenticated user
+                .requestMatchers("/api/orders/**").authenticated()
                 // Everything else requires login
                 .anyRequest().authenticated()
             )

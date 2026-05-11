@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Welcome</title>
+</head>
+<body style="margin:0;padding:0;background:#fdf8ff;font-family:'Segoe UI',Arial,sans-serif;color:#2d2d2d;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#fdf8ff;padding:24px 12px;">
+    <tr>
+      <td align="center">
+        <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;background:#ffffff;border-radius:12px;overflow:hidden;box-shadow:0 2px 16px rgba(123,94,167,0.12);">
+
+          <tr>
+            <td style="background:linear-gradient(135deg,#7b5ea7 0%,#5c3d8f 100%);padding:32px 24px;text-align:center;color:#ffffff;">
+              <div style="font-size:40px;line-height:1;">💎</div>
+              <h1 style="margin:12px 0 0;font-size:22px;font-weight:800;letter-spacing:0.5px;color:#ffffff;">Welcome to ShubhCrystals</h1>
+            </td>
+          </tr>
+
+          <tr>
+            <td style="padding:28px 28px 8px;">
+              <p style="font-size:16px;margin:0 0 16px;">Hi <strong th:text="${name}">friend</strong>,</p>
+              <p style="font-size:15px;line-height:1.6;margin:0 0 16px;color:#444;">
+                Thank you for joining us. Each ShubhCrystals bracelet is hand-strung with intention,
+                paired with a stone whose energy supports a part of your journey — calm, love, clarity,
+                or grounding.
+              </p>
+              <p style="font-size:15px;line-height:1.6;margin:0 0 24px;color:#444;">
+                Your account is ready. Have a look around the shop whenever you feel drawn to a stone.
+              </p>
+              <table role="presentation" cellpadding="0" cellspacing="0" style="margin:8px 0 8px;">
+                <tr>
+                  <td style="background:#7b5ea7;border-radius:10px;">
+                    <a th:href="${shopUrl}" href="#"
+                       style="display:inline-block;padding:12px 28px;color:#ffffff;font-weight:700;text-decoration:none;font-size:15px;">
+                      Browse the shop →
+                    </a>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <tr>
+            <td style="padding:8px 28px 28px;font-size:13px;color:#777;line-height:1.55;">
+              Free shipping on orders over ₹999. Need help? Just reply to this email.
+            </td>
+          </tr>
+
+          <tr>
+            <td style="background:#f3e8ff;padding:16px 24px;text-align:center;font-size:12px;color:#666;">
+              You're receiving this because you signed up at ShubhCrystals.
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

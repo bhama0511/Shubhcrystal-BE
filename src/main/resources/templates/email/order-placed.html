@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Order received</title>
+</head>
+<body style="margin:0;padding:0;background:#fdf8ff;font-family:'Segoe UI',Arial,sans-serif;color:#2d2d2d;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#fdf8ff;padding:24px 12px;">
+    <tr>
+      <td align="center">
+        <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;background:#ffffff;border-radius:12px;overflow:hidden;box-shadow:0 2px 16px rgba(123,94,167,0.12);">
+
+          <tr>
+            <td style="background:linear-gradient(135deg,#7b5ea7 0%,#5c3d8f 100%);padding:28px 24px;text-align:center;color:#ffffff;">
+              <div style="font-size:32px;line-height:1;">✨</div>
+              <h1 style="margin:10px 0 4px;font-size:22px;font-weight:800;color:#ffffff;">Thank you for your order!</h1>
+              <p style="margin:0;font-size:14px;opacity:0.9;">Order #<span th:text="${order.id}">42</span></p>
+            </td>
+          </tr>
+
+          <tr>
+            <td style="padding:28px 28px 8px;">
+              <p style="font-size:16px;margin:0 0 12px;">Hi <strong th:text="${name}">friend</strong>,</p>
+              <p style="font-size:15px;line-height:1.6;margin:0 0 18px;color:#444;">
+                We've received your order and are getting it ready. You'll get another email when it ships.
+                Payment is <strong>Cash on Delivery</strong> — pay when your package arrives.
+              </p>
+            </td>
+          </tr>
+
+          <tr>
+            <td style="padding:0 28px 8px;">
+              <h2 style="font-size:14px;text-transform:uppercase;letter-spacing:0.05em;color:#7b5ea7;margin:0 0 12px;">Items</h2>
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+                <tr th:each="item : ${order.items}">
+                  <td style="padding:10px 0;border-bottom:1px solid #f3e8ff;font-size:14px;">
+                    <span style="font-size:18px;margin-right:6px;" th:text="${item.productEmoji} ?: '💎'">💎</span>
+                    <span style="font-weight:600;" th:text="${item.productName}">Bracelet</span>
+                    <span style="color:#888;font-size:13px;"> × <span th:text="${item.quantity}">1</span></span>
+                  </td>
+                  <td style="padding:10px 0;border-bottom:1px solid #f3e8ff;font-size:14px;font-weight:700;color:#7b5ea7;text-align:right;white-space:nowrap;">
+                    ₹<span th:text="${#numbers.formatDecimal(item.price * item.quantity, 0, 'COMMA', 0, 'POINT')}">799</span>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <tr>
+            <td style="padding:8px 28px 16px;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="font-size:14px;">
+                <tr><td style="padding:4px 0;color:#666;">Subtotal</td>
+                    <td style="padding:4px 0;text-align:right;">₹<span th:text="${#numbers.formatDecimal(order.subtotal, 0, 'COMMA', 0, 'POINT')}">2297</span></td></tr>
+                <tr><td style="padding:4px 0;color:#666;">Shipping</td>
+                    <td style="padding:4px 0;text-align:right;" th:text="${order.shipping.signum() == 0} ? 'Free' : ('₹' + ${#numbers.formatDecimal(order.shipping, 0, 'COMMA', 0, 'POINT')})">Free</td></tr>
+                <tr><td style="padding:10px 0 0;font-size:16px;font-weight:800;color:#5c3d8f;border-top:1px solid #f3e8ff;">Total</td>
+                    <td style="padding:10px 0 0;text-align:right;font-size:16px;font-weight:800;color:#5c3d8f;border-top:1px solid #f3e8ff;">
+                      ₹<span th:text="${#numbers.formatDecimal(order.total, 0, 'COMMA', 0, 'POINT')}">2297</span></td></tr>
+              </table>
+            </td>
+          </tr>
+
+          <tr>
+            <td style="padding:8px 28px 16px;">
+              <h2 style="font-size:14px;text-transform:uppercase;letter-spacing:0.05em;color:#7b5ea7;margin:0 0 8px;">Shipping to</h2>
+              <p style="font-size:14px;line-height:1.55;color:#444;margin:0;">
+                <strong th:text="${order.shippingName}">Name</strong><br />
+                <span th:text="${order.shippingAddress}">Address</span><br />
+                <span th:text="${order.shippingCity}">City</span> -
+                <span th:text="${order.shippingPincode}">Pincode</span><br />
+                <span style="color:#888;">📞 <span th:text="${order.shippingPhone}">phone</span></span>
+              </p>
+            </td>
+          </tr>
+
+          <tr>
+            <td style="padding:8px 28px 28px;text-align:center;">
+              <table role="presentation" cellpadding="0" cellspacing="0" style="margin:8px auto;">
+                <tr>
+                  <td style="background:#7b5ea7;border-radius:10px;">
+                    <a th:href="${ordersUrl}" href="#"
+                       style="display:inline-block;padding:12px 28px;color:#ffffff;font-weight:700;text-decoration:none;font-size:15px;">
+                      View my orders
+                    </a>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <tr>
+            <td style="background:#f3e8ff;padding:16px 24px;text-align:center;font-size:12px;color:#666;">
+              Need to change something? Reply to this email and we'll help.
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

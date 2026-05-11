@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Order update</title>
+</head>
+<body style="margin:0;padding:0;background:#fdf8ff;font-family:'Segoe UI',Arial,sans-serif;color:#2d2d2d;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#fdf8ff;padding:24px 12px;">
+    <tr>
+      <td align="center">
+        <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;background:#ffffff;border-radius:12px;overflow:hidden;box-shadow:0 2px 16px rgba(123,94,167,0.12);">
+
+          <tr>
+            <td style="background:#5c3d8f;padding:24px;text-align:center;color:#ffffff;">
+              <div style="font-size:32px;line-height:1;"
+                   th:switch="${order.status}">
+                <span th:case="'CONFIRMED'">📋</span>
+                <span th:case="'SHIPPED'">📦</span>
+                <span th:case="'DELIVERED'">🎉</span>
+                <span th:case="'CANCELLED'">❌</span>
+                <span th:case="*">🔔</span>
+              </div>
+              <h1 style="margin:10px 0 0;font-size:20px;font-weight:800;color:#ffffff;">
+                Order #<span th:text="${order.id}">42</span> is now
+                <span th:switch="${order.status}">
+                  <span th:case="'CONFIRMED'">confirmed</span>
+                  <span th:case="'SHIPPED'">on its way</span>
+                  <span th:case="'DELIVERED'">delivered</span>
+                  <span th:case="'CANCELLED'">cancelled</span>
+                  <span th:case="*" th:text="${order.status}">updated</span>
+                </span>
+              </h1>
+            </td>
+          </tr>
+
+          <tr>
+            <td style="padding:28px 28px 8px;">
+              <p style="font-size:16px;margin:0 0 14px;">Hi <strong th:text="${name}">friend</strong>,</p>
+
+              <p style="font-size:15px;line-height:1.6;margin:0 0 16px;color:#444;"
+                 th:switch="${order.status}">
+                <span th:case="'CONFIRMED'">Your order has been confirmed by our team and is being prepared for shipping.</span>
+                <span th:case="'SHIPPED'">Good news — your order is on its way! It should reach you in 3–5 business days.</span>
+                <span th:case="'DELIVERED'">Your order has arrived. We hope your new bracelet brings you the energy you reached for. ✨</span>
+                <span th:case="'CANCELLED'">Your order has been cancelled. If this was a mistake or you have questions, just reply to this email.</span>
+                <span th:case="*">Your order status has been updated.</span>
+              </p>
+
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f3e8ff;border-radius:8px;margin:8px 0 16px;">
+                <tr>
+                  <td style="padding:14px 16px;">
+                    <div style="font-size:12px;text-transform:uppercase;letter-spacing:0.05em;color:#7b5ea7;font-weight:700;margin-bottom:4px;">Status changed</div>
+                    <div style="font-size:14px;color:#444;">
+                      <span style="color:#888;" th:text="${oldStatus}">Pending</span>
+                      &nbsp;→&nbsp;
+                      <strong style="color:#5c3d8f;" th:text="${order.status}">Confirmed</strong>
+                    </div>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <tr>
+            <td style="padding:0 28px 16px;">
+              <h2 style="font-size:14px;text-transform:uppercase;letter-spacing:0.05em;color:#7b5ea7;margin:0 0 8px;">Order details</h2>
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+                <tr th:each="item : ${order.items}">
+                  <td style="padding:8px 0;border-bottom:1px solid #f3e8ff;font-size:14px;">
+                    <span th:text="${item.productEmoji} ?: '💎'">💎</span>
+                    <span th:text="${item.productName}">Bracelet</span>
+                    <span style="color:#888;"> × <span th:text="${item.quantity}">1</span></span>
+                  </td>
+                </tr>
+              </table>
+              <p style="font-size:14px;margin:14px 0 0;text-align:right;">
+                Total: <strong style="color:#5c3d8f;">₹<span th:text="${#numbers.formatDecimal(order.total, 0, 'COMMA', 0, 'POINT')}">2297</span></strong>
+              </p>
+            </td>
+          </tr>
+
+          <tr>
+            <td style="padding:8px 28px 28px;text-align:center;">
+              <table role="presentation" cellpadding="0" cellspacing="0" style="margin:8px auto;">
+                <tr>
+                  <td style="background:#7b5ea7;border-radius:10px;">
+                    <a th:href="${ordersUrl}" href="#"
+                       style="display:inline-block;padding:12px 28px;color:#ffffff;font-weight:700;text-decoration:none;font-size:15px;">
+                      View order
+                    </a>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <tr>
+            <td style="background:#f3e8ff;padding:16px 24px;text-align:center;font-size:12px;color:#666;">
+              Questions? Just reply to this email.
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
